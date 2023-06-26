@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/BrianKimurgor/react-project/issues"
   },
-  "homepage": "https://github.com/BrianKimurgor/react-project#readme"
+  "homepage": "https://github.com/BrianKimurgor/react-project#readme",
+  "dependencies": {
+    "babel-preset-react": "^6.24.1",
+    "babelify": "^10.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "watchify": "^4.0.0"
+  }
 }
