@@ -33957,46 +33957,76 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
 };
 }).call(this)}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
 },{"process/browser.js":1,"timers":11}],12:[function(require,module,exports){
-var react = require('react');
-var listItem = require('./listitem.jsx');
-var ingredient = [{
-  "id": 1,
-  "text": "ham"
-}, {
-  "id": 2,
-  "text": "cheese"
-}, {
-  "id": 3,
-  "text": "peperoni"
-}];
+var React = require('react');
+var List = require('./list.jsx');
+var ListManager = React.createClass({
+  displayName: "ListManager",
+  getInitialState: function () {
+    return {
+      items: [],
+      newItemText: ''
+    };
+  },
+  onChange: function (e) {
+    this.setState({
+      newItemText: e.target.value
+    });
+  },
+  handleSubmit: function (e) {
+    e.preventDefault();
+    var currentItems = this.state.items;
+    currentItems.push(this.state.newItemText);
+    this.setStae({
+      items: currentItems,
+      newItemText: ''
+    });
+  },
+  render: function () {
+    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h3", null, this.props.title), /*#__PURE__*/React.createElement("form", {
+      onSubmit: this.handleSubmit
+    }, /*#__PURE__*/React.createElement("input", {
+      onChange: this.onChange,
+      value: this.state.newItemText
+    }), /*#__PURE__*/React.createElement("button", null, "Add")), /*#__PURE__*/React.createElement("list", {
+      items: this.state.items
+    }));
+  }
+});
+module.exports = ListManager;
+
+},{"./list.jsx":13,"react":7}],13:[function(require,module,exports){
+var React = require('react');
+var ListItem = require('./listItem.jsx');
 var List = React.createClass({
   displayName: "List",
   render: function () {
-    var listItems = ingredient.map(function (item) {
-      return /*#__PURE__*/React.createElement("listitem", {
-        key: item.id,
-        ingredient: item.text
+    var createItem = function (text, index) {
+      return /*#__PURE__*/React.createElement(ListItem, {
+        key: index + text,
+        text: text
       });
-    });
-    return /*#__PURE__*/React.createElement("ul", null, listItems);
+    };
+    return /*#__PURE__*/React.createElement("ul", null, this.props.items.map(createItem));
   }
 });
 module.exports = List;
 
-},{"./listitem.jsx":13,"react":7}],13:[function(require,module,exports){
-var react = require('react');
-var listItem = React.createClass({
-  displayName: "listItem",
+},{"./listItem.jsx":14,"react":7}],14:[function(require,module,exports){
+var React = require('react');
+var ListItem = React.createClass({
+  displayName: "ListItem",
   render: function () {
-    return /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("h4", null, this.prompt.ingredient));
+    return /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("h4", null, this.props.text));
   }
 });
-module.exports = listItem;
+module.exports = ListItem;
 
-},{"react":7}],14:[function(require,module,exports){
+},{"react":7}],15:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
-var List = require('../src/components/list.jsx');
-ReactDOM.render( /*#__PURE__*/React.createElement(List, null), document.getElementById('ingredients'));
+var ListManager = require('./components/ListManager.jsx');
+ReactDOM.render( /*#__PURE__*/React.createElement(ListManager, {
+  title: "ingredients"
+}), document.getElementById('ingredients'));
 
-},{"../src/components/list.jsx":12,"react":7,"react-dom":4}]},{},[14]);
+},{"./components/ListManager.jsx":12,"react":7,"react-dom":4}]},{},[15]);
