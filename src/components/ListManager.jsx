@@ -15,7 +15,7 @@ var ListManager = React.createClass({
 
         currentItems.push(this.state.newItemText);
 
-        this.setStae({items: currentItems, newItemText:''})
+        this.setState({items: currentItems, newItemText:''})
     },
     render: function() {
         return(
@@ -25,7 +25,7 @@ var ListManager = React.createClass({
                    <input onChange = {this.onChange} value = {this.state.newItemText}/>
                    <button>Add</button>
                 </form>
-            <list items = {this.state.items}/>
+            <List items = {this.state.items}/>
             </div>
         );
     }

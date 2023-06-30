@@ -20,6 +20,7 @@
   "dependencies": {
     "@babel/preset-react": "^7.22.5",
     "babelify": "^10.0.0",
+    "bootstrap": "^5.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "watchify": "^4.0.0"
@@ -32,4 +33,3 @@
     "babel-loader": "^7.1.5"
   }
 }
-

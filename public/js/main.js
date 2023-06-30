@@ -33976,7 +33976,7 @@ var ListManager = React.createClass({
     e.preventDefault();
     var currentItems = this.state.items;
     currentItems.push(this.state.newItemText);
-    this.setStae({
+    this.setState({
       items: currentItems,
       newItemText: ''
     });
@@ -33987,7 +33987,7 @@ var ListManager = React.createClass({
     }, /*#__PURE__*/React.createElement("input", {
       onChange: this.onChange,
       value: this.state.newItemText
-    }), /*#__PURE__*/React.createElement("button", null, "Add")), /*#__PURE__*/React.createElement("list", {
+    }), /*#__PURE__*/React.createElement("button", null, "Add")), /*#__PURE__*/React.createElement(List, {
       items: this.state.items
     }));
   }
@@ -34001,24 +34001,23 @@ var List = React.createClass({
   displayName: "List",
   render: function () {
     var createItem = function (text, index) {
-      return /*#__PURE__*/React.createElement(ListItem, {
+      return React.createElement(ListItem, {
         key: index + text,
         text: text
       });
     };
-    return /*#__PURE__*/React.createElement("ul", null, this.props.items.map(createItem));
+    return React.createElement('ul', null, this.props.items.map(createItem));
   }
 });
 module.exports = List;
 
 },{"./listItem.jsx":14,"react":7}],14:[function(require,module,exports){
-var React = require('react');
-var ListItem = React.createClass({
-  displayName: "ListItem",
-  render: function () {
+const React = require('react');
+class ListItem extends React.Component {
+  render() {
     return /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("h4", null, this.props.text));
   }
-});
+}
 module.exports = ListItem;
 
 },{"react":7}],15:[function(require,module,exports){
