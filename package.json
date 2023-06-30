@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "watchify src/main.jsx -v -t [babelify --presets [ @babel/preset-react ] ] -o public/js/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,10 +18,18 @@
   },
   "homepage": "https://github.com/BrianKimurgor/react-project#readme",
   "dependencies": {
-    "babel-preset-react": "^6.24.1",
+    "@babel/preset-react": "^7.22.5",
     "babelify": "^10.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "watchify": "^4.0.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-syntax-jsx": "^7.22.5",
+    "@babel/plugin-transform-react-display-name": "^7.22.5",
+    "@babel/plugin-transform-react-jsx": "^7.22.5",
+    "@babel/preset-flow": "^7.22.5",
+    "babel-loader": "^7.1.5"
   }
 }
+
