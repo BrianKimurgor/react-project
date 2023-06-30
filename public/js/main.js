@@ -33974,7 +33974,7 @@ var List = React.createClass({
   render: function () {
     var listItems = ingredient.map(function (item) {
       return /*#__PURE__*/React.createElement("listitem", {
-        key: items.id,
+        key: item.id,
         ingredient: item.text
       });
     });
